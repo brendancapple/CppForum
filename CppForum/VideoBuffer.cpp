@@ -25,14 +25,8 @@ void VideoBuffer::empty() {
 }
 
 void VideoBuffer::push(char content[]) {
-    for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
+    for (int i = 0; i < strlen(content); i++) {
         uint32_t tempPixel = (182 << 24) + (115 << 16) + (232 << 8);
-
-        if (i >= sizeof(content)) {
-            tempPixel += ' ';
-            *(buffer + i) = tempPixel;
-            continue;
-        }
         tempPixel += (char) content[i];
         *(buffer + i) = tempPixel;
     }

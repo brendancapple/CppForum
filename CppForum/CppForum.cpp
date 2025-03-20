@@ -13,7 +13,7 @@ int main()
     VideoBuffer shauryasVideoBuffer;
     shauryasVideoBuffer.empty();
 
-    std::string str = "abcdefghijklmnopqrstuvwxyz";
+    char str[] = "abcdefghijklmnopqrstuvwxyz";
     shauryasVideoBuffer.push(str);
 
     shauryasVideoBuffer.render();
