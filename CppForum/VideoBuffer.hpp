@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+
+#include "Pixel.h"
 
 #define SCREEN_WIDTH 10
 #define SCREEN_HEIGHT 5
@@ -18,5 +21,9 @@ public:
 	void empty();
 
 	void push(char content[]);
+	void push(char content[], uint8_t r, uint8_t g, uint8_t b);
 	void push(std::string content);
+	void push(std::string content, uint8_t r, uint8_t g, uint8_t b);
+	void push(Pixel pixel);
+	void push(std::vector<Pixel> pixels);
 };

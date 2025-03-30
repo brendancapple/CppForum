@@ -25,24 +25,58 @@ void VideoBuffer::empty() {
 }
 
 void VideoBuffer::push(char content[]) {
-    for (int i = 0; i < strlen(content); i++) {
+    for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
+        if (i >= strlen(content))
+            break;
+        
         uint32_t tempPixel = (182 << 24) + (115 << 16) + (232 << 8);
         tempPixel += (char) content[i];
         *(buffer + i) = tempPixel;
     }
 }
 
-void VideoBuffer::push(std::string content) {
-    for (int i = 0; i < content.length(); i++) {
-        uint32_t tempPixel = (182 << 24) + (115 << 16) + (232 << 8);
+void VideoBuffer::push(char content[], uint8_t r, uint8_t g, uint8_t b) {
+    for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
+        if (i >= strlen(content))
+            break;
 
-        if (i >= sizeof(content)) {
-            tempPixel += ' ';
-            *(buffer + i) = tempPixel;
-            continue;
-        }
+        uint32_t tempPixel = (r << 24) + (g << 16) + (b << 8);
         tempPixel += (char)content[i];
         *(buffer + i) = tempPixel;
+    }
+}
+
+void VideoBuffer::push(std::string content) {
+    for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
+        if (i >= content.length())
+            break;
+
+        uint32_t tempPixel = (182 << 24) + (115 << 16) + (232 << 8);
+        tempPixel += (char)content[i];
+        *(buffer + i) = tempPixel;
+    }
+}
+
+void VideoBuffer::push(std::string content, uint8_t r, uint8_t g, uint8_t b) {
+    for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
+        if (i >= content.length())
+            break;
+
+        uint32_t tempPixel = (r << 24) + (g << 16) + (b << 8);
+        tempPixel += (char)content[i];
+        *(buffer + i) = tempPixel;
+    }
+}
+
+void VideoBuffer::push(Pixel pixel) {
+    uint32_t tempPixel = (pixel.r << 24) + (pixel.g << 16) + (pixel.b << 8);
+    tempPixel += (char) pixel.c;
+    *(buffer + pixel.row * SCREEN_WIDTH + pixel.col) = tempPixel;
+}
+
+void VideoBuffer::push(std::vector<Pixel> pixels) {
+    for (Pixel p : pixels) {
+        this->push(p);
     }
 }
 
