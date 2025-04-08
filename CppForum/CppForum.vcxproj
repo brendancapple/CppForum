@@ -127,10 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="CppForum.cpp" />
     <ClCompile Include="VideoBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Pixel.h" />
     <ClInclude Include="VideoBuffer.hpp" />
   </ItemGroup>
