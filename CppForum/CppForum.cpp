@@ -17,7 +17,7 @@ int main()
     VideoBuffer shauryasVideoBuffer;
     shauryasVideoBuffer.empty();
 
-    char str[] = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+    /*char str[] = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
     shauryasVideoBuffer.push(str);
 
     Pixel randomX = { 4, 8, 255, 0, 0, 'X' };
@@ -26,16 +26,20 @@ int main()
     Pixel randomBL = { 2, 3, 0, 255, 255, 'B' };
     
     std::vector<Pixel> randomExes= { randomX, randomEX };
-    std::vector<Pixel> randomEls = { randomL, randomBL };
+    std::vector<Pixel> randomEls = { randomL, randomBL };Z*/
     
     Animation shauryasAnimation;
-    shauryasAnimation.addFrame(randomExes);
+    shauryasAnimation.load((char*)"videos/exes.covid");
+
+    /*shauryasAnimation.addFrame(randomExes);
     shauryasAnimation.addFrame(randomEls);
+
+    shauryasAnimation.save((char*) "videos/exes.covid");*/
 
 
     for (int i = 1; i < 20; i++) {
         shauryasVideoBuffer.empty();
-        std::cout << "\x1b[2j";
+        std::cout << "\x1b[2J\x1b[3J";
         shauryasVideoBuffer.push(shauryasAnimation.getFrame(i % shauryasAnimation.length()));
         shauryasVideoBuffer.render();
 
