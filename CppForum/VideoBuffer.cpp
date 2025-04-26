@@ -13,7 +13,10 @@ void VideoBuffer::render() {
     for (int i = 0; i < SCREEN_HEIGHT; i++) {
         for (int j = 0; j < SCREEN_WIDTH; j++) {
             uint32_t p = (uint32_t) * (buffer + j + (i * SCREEN_WIDTH));
-            std::cout << "\x1B[38;2;" << ((p >> 24) & 255) << ";" << ((p >> 16) & 255) << ";" << ((p >> 8) & 255) << "m" << (char)(p & 255);
+            std::cout << "\x1B[38;2;" << ((p >> 24) & 255) 
+                << ";" << ((p >> 16) & 255) 
+                << ";" << ((p >> 8) & 255) 
+                << "m" << (char)(p & 255);
         }
         std::cout << "\n";
     }

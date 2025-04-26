@@ -16,7 +16,9 @@ void Animation::load(char filepath[]) {
 	std::fstream file;
 	file.open(filepath, std::ios::binary | std::ios::in);
 
-	if (!file.is_open()); // DO LATER
+	if (!file.is_open()) {
+		throw std::invalid_argument("File not found!");
+	}
 
 	frames.clear();
 	int frameCount;
@@ -41,7 +43,9 @@ void Animation::save(char filepath[]) {
 	std::ofstream file;
 	file.open(filepath, std::ios::binary | std::ios::trunc | std::ios::out);
 
-	if (!file.is_open()); // DO LATER
+	if (!file.is_open()) {
+		throw std::invalid_argument("Directory could not be opened!");
+	}
 
 	int frameCount = frames.size();
 	file.write((char*)&frameCount, sizeof(frameCount));

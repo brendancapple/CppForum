@@ -2,6 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <stdexcept>
 
 #include "VideoBuffer.hpp"
 #include "Animation.h"
@@ -10,32 +11,25 @@
 // #include <windows.h>
 // #pragma execution_character_set( "utf-8" )
 
-int main()
-{
-    // SetConsoleOutputCP(65001);
+int main(int argc, char* argv[]) {
+    std::string filepath = "peanut butter";
+    if (argc > 1) {
+        filepath = argv[1];
+    }
+
 
     VideoBuffer shauryasVideoBuffer;
     shauryasVideoBuffer.empty();
 
-    /*char str[] = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
-    shauryasVideoBuffer.push(str);
-
-    Pixel randomX = { 4, 8, 255, 0, 0, 'X' };
-    Pixel randomEX = { 3, 8, 0, 0, 255, 'E' };
-    Pixel randomL = { 2, 1, 255, 255, 0, 'L' };
-    Pixel randomBL = { 2, 3, 0, 255, 255, 'B' };
-    
-    std::vector<Pixel> randomExes= { randomX, randomEX };
-    std::vector<Pixel> randomEls = { randomL, randomBL };Z*/
-    
     Animation shauryasAnimation;
-    shauryasAnimation.load((char*)"videos/exes.covid");
-
-    /*shauryasAnimation.addFrame(randomExes);
-    shauryasAnimation.addFrame(randomEls);
-
-    shauryasAnimation.save((char*) "videos/exes.covid");*/
-
+    try {
+        shauryasAnimation.load((char*) filepath.c_str());
+    } 
+    catch (std::invalid_argument e) {
+        std::cerr << e.what() << "\n";
+        std::cerr << filepath;
+        std::exit(-1);
+    }
 
     for (int i = 1; i < 20; i++) {
         shauryasVideoBuffer.empty();
